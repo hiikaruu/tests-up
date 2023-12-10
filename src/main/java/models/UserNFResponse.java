@@ -1,20 +1,11 @@
 package models;
-
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class UserNFResponse {
     private DataNFResponse data;
     private SupportResponse support;
-
-    public DataNFResponse getData() { return data; }
-    public void setData(DataNFResponse value) { this.data = value; }
-
-    public SupportResponse getSupport() { return support; }
-    public void setSupport(SupportResponse value) { this.support = value; }
 }

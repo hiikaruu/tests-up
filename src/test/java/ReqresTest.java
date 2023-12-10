@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import static steps.Steps.USER_STEPS;
 
 public class ReqresTest {
-    @Test (description = "Получение всех пользователей      ")
+    @Test (description = "Получение всех пользователей")
     public void getUserList() {
         System.out.println(USER_STEPS.getUserList(2));
     }
