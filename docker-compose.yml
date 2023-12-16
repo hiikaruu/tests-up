@@ -1,0 +1,27 @@
+version: '3'
+services:
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
+    ports:
+      - 8080:8080
+      - 50000:50000
+    container_name: jenkins
+    volumes:
+      - /home/${myname}/jenkins_compose/jenkins_configuration:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+  agent:
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
+    container_name: agent
+    expose:
+      - 22
+    environment:
+      - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDJMb8VammZf+/tvhZrJd3vev9qHWXW8WAiTAthfeoxYlWsn/9RUuJ5mm2KEPWOEEgN72sfBk164uC5Tz3JOj49ITOzK07kWEhdKfby46QqxGj4tlfyFRF9mR8YAqzvv1WAbLdUeX2ntA5ILgmg72Gb//ItbdFP/VL2GfP2ywwsS6oFkJ33TKgeDfvBexUw54PaxOZRoYaf+RDJ9WoybjdBZaSdaDyJYjYmH7ZlrabZvx8edtgew8sjcfUWoA0hYND3OSGepCe6bZWnR68pejrN27ShOFxMXGGuNprw30JDa2bbjn87rsvQHbOkr+amyQvKi/28wnUT9HWXEeDx8V+d5Xzkpmi39A/YLQ9/giyD04BMmVNhGo7OQ2elJwKn2UEvxqM7QlNlFBmBr/ZvbBTsrVfuO4ibmGnVPT177i4z/6Es+qGaIj8nqwq5ERXVtD/I3ltZA5zy2iVky0MQf0TR4/P0i5MJgvAF5Gavtwx8aDJm5epvj86EXEzOmpovCis= root@d294c7aadfdf
+
+  app:
+    container_name: 'testup'
+    build: ./
